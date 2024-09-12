@@ -1,6 +1,7 @@
 #ifndef _CONNECTION_POOL_
 #define _CONNECTION_POOL_
 
+#include <iostream>
 #include <stdio.h>
 #include <list>
 #include <mysql/mysql.h>
@@ -15,7 +16,7 @@ public:
     int GetFreeConn();                          //获取连接
     void DestroyPool();                         //销毁所有连接
 
-    //单例模式
+    //单例模式   局部静态变量懒汉模式
     static connection_pool* GetInstance();
 
     void init(string url, string User, string PassWord, string DataBaseName, int Port, int MaxConn, int close_log);
