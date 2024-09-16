@@ -6,7 +6,10 @@
 #include <list>
 #include <mysql/mysql.h>
 #include <string>
+#include <errno.h>
+#include <pthread.h>
 #include "../lock/locker.h"
+#include "../log/log.h"
 using namespace std;
 
 class connection_pool {
@@ -41,6 +44,7 @@ public:
     int m_close_log;            //日志开关
 };
 
+//RAII模式管理数据库连接，确保连接在使用完毕后自动归还到连接池中
 class connectionRAII {
 public:
     connectionRAII(MYSQL** con, connection_pool* connPool);
