@@ -5,6 +5,7 @@
 #include <list>
 #include <exception>
 #include "../lock/locker.h"
+#include "../CGImysql/sql_connection_pool.h"
 
 //线程池
 template<typename T>
@@ -32,6 +33,7 @@ private:
     int m_actor_model;              //模型切换
 };
 
+//线程池类构造函数
 template<typename T>
 threadpool<T>::threadpool(int actor_model, connection_pool* connPool, int thread_number, int max_request) :
     m_actor_model(actor_model), m_connPool(connPool), m_thread_number(thread_number), m_max_request(max_request), m_threads(nullptr) {
@@ -55,6 +57,7 @@ threadpool<T>::~threadpool() {
     delete[] m_threads;
 }
 
+//将请求添加到工作队列中，并设置请求状态
 template<typename T>
 bool threadpool<T>::append(T* request, int state) {
     m_queuelocker.lock();
@@ -71,6 +74,7 @@ bool threadpool<T>::append(T* request, int state) {
     return true;
 }
 
+//将请求添加到工作队列中，不设置请求状态
 template<typename T>
 bool threadpool<T>::append_p(T* request) {
     m_queuelocker.lock();
@@ -111,7 +115,14 @@ void threadpool<T>::run() {
         if (!request)
             continue;
 
-        
+        if (1 == m_actor_model) {
+            if (0 == request->m_state) {
+                if (request->read_once()) {
+                    
+                }
+            }
+        }
+
     }
 }
 
