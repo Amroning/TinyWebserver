@@ -30,7 +30,7 @@ private:
     locker m_queuelocker;           //保护请求队列的互斥锁
     sem m_queuestat;                //信号量  是否有任务需要处理
     connection_pool* m_connPool;    //数据库
-    int m_actor_model;              //模型切换
+    int m_actor_model;              //模型切换  0-Proactor模型  1-Reactor模型
 };
 
 //线程池类构造函数
@@ -57,7 +57,7 @@ threadpool<T>::~threadpool() {
     delete[] m_threads;
 }
 
-//将请求添加到工作队列中，并设置请求状态
+//将请求添加到工作队列中，并设置请求状态（读为0，写为1）
 template<typename T>
 bool threadpool<T>::append(T* request, int state) {
     m_queuelocker.lock();
@@ -84,8 +84,10 @@ bool threadpool<T>::append_p(T* request) {
         return false;
     }
 
+    //添加任务
     m_workqueue.push_back(request);
     m_queuelocker.unlock();
+    //信号量提醒有任务要处理
     m_queuestat.post();
     return true;
 }
@@ -100,14 +102,16 @@ void* threadpool<T>::worker(void* arg) {
 template<typename T>
 void threadpool<T>::run() {
     while (true) {
+        //信号量等待
         m_queuestat.wait();
+        //被唤醒后先加互斥锁
         m_queuelocker.lock();
         //检查请求队列是否为空
         if (m_workqueue.empty()) {
             m_queuelocker.unlock();
             continue;
         }
-        //取出请求开始处理
+        //取出请求
         T* request = m_workqueue.front();
         m_workqueue.pop_front();
         m_queuelocker.unlock();
@@ -115,14 +119,35 @@ void threadpool<T>::run() {
         if (!request)
             continue;
 
+        //1：  Reactor模型
         if (1 == m_actor_model) {
+            //m_state=0，读
             if (0 == request->m_state) {
                 if (request->read_once()) {
-                    
+                    request->improv = 1;
+                    connectionRAII mysqlcon(&request->mysql, m_connPool);
+                    request->process();
+                }
+                else {
+                    request->improv = 1;
+                    request->timer_flag = 1;
+                }
+            }
+            //m_state=1，写
+            else {
+                if (request->write())
+                    request->improv = 1;
+                else {
+                    request->improv = 1;
+                    request->timer_flag = 1;
                 }
             }
         }
-
+        //0:  Proactor模型
+        else {
+            connectionRAII mysqlcon(&request->mysql, m_connPool);
+            request->process();
+        }
     }
 }
 
