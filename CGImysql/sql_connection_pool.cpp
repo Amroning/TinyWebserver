@@ -77,7 +77,7 @@ bool connection_pool::ReleaseConnection(MYSQL* con) {
     ++m_FreeConn;
     --m_CurConn;
 
-    lock.lock();
+    lock.unlock();
 
     reserve.post();
 
