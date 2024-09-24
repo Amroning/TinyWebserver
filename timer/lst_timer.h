@@ -16,6 +16,7 @@
 #include <signal.h>
 #include <assert.h>
 #include "../log/log.h"
+#include "../http/http_conn.h"
 
 //前向声明
 class util_timer;
