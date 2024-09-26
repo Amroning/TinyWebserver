@@ -65,7 +65,7 @@ public:
 
 public:
     //初始化套接字地址,函数内部会调用私有方法init()
-    void init(int sockfd, const sockaddr_in& addr, char*, int, int, string user, string passwd, string sqlname);
+    void init(int sockfd, const sockaddr_in& addr, char* root, int TRIGMode, int close_log, string user, string passwd, string sqlname);
     //关闭http连接
     void close_conn(bool real_close = true);
     //处理http请求工作函数
@@ -82,8 +82,8 @@ public:
 
     //同步线程初始化数据库读取表
     void initmysql_result(connection_pool* connPool);
-    int timer_flag;
-    int improv;
+    int timer_flag;         //标记请求是否需要重新设置计时器或处理超时
+    int improv;             //标记请求是否得到了处理
 
 private:
     void init();
