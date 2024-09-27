@@ -60,7 +60,10 @@ void addfd(int epollfd, int fd, bool one_shot, int TRIGMode) {
     else
         event.events = EPOLLIN | EPOLLRDHUP;
 
-    if (one_shot)
+    //一个线程读取某个socket上的数据后开始处理数据，在处理过程中该socket上又有新数据可读，此时另一个线程被唤醒读取，此时两个线程处理同一个socket
+    //但期望的是一个socket连接在任一时刻都只被一个线程处理，通过epoll_ctl对该文件描述符注册epolloneshot事件，一个线程处理socket时，其他线程将无法处理
+    //当该线程处理完后，需要通过epoll_ctl重置epolloneshot事件
+        if (one_shot)
         event.events |= EPOLLONESHOT;
 
     epoll_ctl(epollfd, EPOLL_CTL_ADD, fd, &event);

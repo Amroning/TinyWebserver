@@ -64,8 +64,8 @@ public:
     epoll_event events[MAX_EVENT_NUMBER];
 
     int m_listenfd;                 //监听套接字
-    int m_OPT_LINGER;
-    int m_TRIGMode;
+    int m_OPT_LINGER;               //设置套接字SO_LINGER属性
+    int m_TRIGMode;                 //设置监听套接字和连接套接字的触发模式
     int m_LISTENTrigmode;           //监听套接字的触发模式  0-LT，1-ET
     int m_CONNTrigmode;             //连接套接字的触发模式  0-LT，1-ET
 

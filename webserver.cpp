@@ -363,6 +363,9 @@ void WebServer::eventLoop() {
                     continue;
             }
             //服务器端关闭连接，移除对应计时器
+            //EPOLLRDHUP    对端关闭写端（不再发送数据）
+            //EPOLLHUP      连接已终止或失效
+            //EPOLLERR      文件描述符上发生了错误
             else if (events[i].events & (EPOLLRDHUP | EPOLLHUP | EPOLLERR)) {
                 util_timer* timer = users_timer[sockfd].timer;
                 deal_timer(timer, sockfd);
