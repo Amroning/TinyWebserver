@@ -100,7 +100,7 @@ public:
         int tmp = 0;
 
         m_mutex.lock();
-        tmp = m_size();
+        tmp = m_size;
         m_mutex.unlock();
 
         return tmp;
@@ -129,7 +129,7 @@ public:
             return false;
         }
 
-        m_back = (back + 1) % m_max_size;       //新增数据放在循环数组对应位置
+        m_back = (m_back + 1) % m_max_size;       //新增数据放在循环数组对应位置
         m_array[m_back] = item;
         m_size++;
         m_cond.broadcast();
@@ -167,7 +167,7 @@ public:
         if (m_size <= 0) {
             t.tv_sec = now.tv_sec + ms_timeout / 1000;
             t.tv_nsec = (ms_timeout % 1000) * 1000;
-            if (!m_cond.timewait(m_mutex.get()), t) {
+            if (!m_cond.timewait(m_mutex.get(), t)) {
                 m_mutex.unlock();
                 return false;
             }

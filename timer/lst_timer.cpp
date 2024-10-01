@@ -174,7 +174,7 @@ struct sigaction {
     void (*sa_restorer)(void);
 }
  */
-void Utils::addsig(int sig, void(handler)(int), bool restart = true) {
+void Utils::addsig(int sig, void(handler)(int), bool restart) {
     //创建sigaction结构体变量
     struct sigaction sa;
     memset(&sa, '\0', sizeof(sa));
