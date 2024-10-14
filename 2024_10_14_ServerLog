@@ -1,0 +1,78 @@
+2024_10_14 19:55:59.907096 [info]:timer tick
+2024_10_14 19:56:04.907143 [info]:timer tick
+2024_10_14 19:56:09.907240 [info]:timer tick
+2024_10_14 19:56:14.907311 [info]:timer tick
+2024_10_14 19:56:19.907362 [info]:timer tick
+2024_10_14 19:56:24.907403 [info]:timer tick
+2024_10_14 19:56:29.907487 [info]:timer tick
+2024_10_14 19:56:34.907547 [info]:timer tick
+2024_10_14 19:56:39.907589 [info]:timer tick
+2024_10_14 19:56:44.907634 [info]:timer tick
+2024_10_14 19:57:03.699993 [info]:timer tick
+2024_10_14 19:57:06.874789 [info]:deal with the client(172.18.80.1)
+2024_10_14 19:57:06.874880 [info]:adjust timer once
+2024_10_14 19:57:06.874925 [info]:GET / HTTP/1.1
+2024_10_14 19:57:06.874963 [info]:Host: 172.18.92.165:9006
+2024_10_14 19:57:06.874968 [info]:Connection: keep-alive
+2024_10_14 19:57:06.874970 [info]:Upgrade-Insecure-Requests: 1
+2024_10_14 19:57:06.874973 [info]:oop!unknow header: Upgrade-Insecure-Requests: 1
+2024_10_14 19:57:06.874975 [info]:User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
+2024_10_14 19:57:06.874977 [info]:oop!unknow header: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
+2024_10_14 19:57:06.874980 [info]:Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024_10_14 19:57:06.874982 [info]:oop!unknow header: Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+2024_10_14 19:57:06.874984 [info]:Accept-Encoding: gzip, deflate
+2024_10_14 19:57:06.874985 [info]:oop!unknow header: Accept-Encoding: gzip, deflate
+2024_10_14 19:57:06.874987 [info]:Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+2024_10_14 19:57:06.874990 [info]:oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+2024_10_14 19:57:06.874992 [info]:
+2024_10_14 19:57:06.875088 [info]:request:HTTP/1.1 200 OK
+
+2024_10_14 19:57:06.875107 [info]:request:HTTP/1.1 200 OK
+Content-Length:586
+
+2024_10_14 19:57:06.875111 [info]:request:HTTP/1.1 200 OK
+Content-Length:586
+Connection:keep-alive
+
+2024_10_14 19:57:06.875114 [info]:request:HTTP/1.1 200 OK
+Content-Length:586
+Connection:keep-alive
+
+
+2024_10_14 19:57:06.875427 [info]:send data to the client(172.18.80.1)
+2024_10_14 19:57:06.875457 [info]:adjust timer once
+2024_10_14 19:57:07.013856 [info]:deal with the client(172.18.80.1)
+2024_10_14 19:57:07.013942 [info]:adjust timer once
+2024_10_14 19:57:07.014023 [info]:GET /favicon.ico HTTP/1.1
+2024_10_14 19:57:07.014054 [info]:Host: 172.18.92.165:9006
+2024_10_14 19:57:07.014057 [info]:Connection: keep-alive
+2024_10_14 19:57:07.014061 [info]:User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
+2024_10_14 19:57:07.014063 [info]:oop!unknow header: User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
+2024_10_14 19:57:07.014065 [info]:Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+2024_10_14 19:57:07.014068 [info]:oop!unknow header: Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+2024_10_14 19:57:07.014070 [info]:Referer: http://172.18.92.165:9006/
+2024_10_14 19:57:07.014072 [info]:oop!unknow header: Referer: http://172.18.92.165:9006/
+2024_10_14 19:57:07.014074 [info]:Accept-Encoding: gzip, deflate
+2024_10_14 19:57:07.014075 [info]:oop!unknow header: Accept-Encoding: gzip, deflate
+2024_10_14 19:57:07.014077 [info]:Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+2024_10_14 19:57:07.014079 [info]:oop!unknow header: Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+2024_10_14 19:57:07.014081 [info]:
+2024_10_14 19:57:07.014206 [info]:request:HTTP/1.1 200 OK
+
+2024_10_14 19:57:07.014228 [info]:request:HTTP/1.1 200 OK
+Content-Length:4286
+
+2024_10_14 19:57:07.014232 [info]:request:HTTP/1.1 200 OK
+Content-Length:4286
+Connection:keep-alive
+
+2024_10_14 19:57:07.014234 [info]:request:HTTP/1.1 200 OK
+Content-Length:4286
+Connection:keep-alive
+
+
+2024_10_14 19:57:07.014571 [info]:send data to the client(172.18.80.1)
+2024_10_14 19:57:07.014591 [info]:adjust timer once
+2024_10_14 19:57:08.700072 [info]:timer tick
+2024_10_14 19:57:13.700155 [info]:timer tick
+2024_10_14 19:57:18.700192 [info]:timer tick

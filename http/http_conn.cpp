@@ -21,7 +21,7 @@ void http_conn::initmysql_result(connection_pool* connPool) {
     connectionRAII mysqlcon(&mysql, connPool);
 
     //在user表中检索usermame，passwd数据，浏览器端输入
-    if (mysql_query(mysql, "SELECT username,password FROM user")) {
+    if (mysql_query(mysql, "SELECT username,passwd FROM user")) {
         LOG_ERROR("SELECT error:%S\n", mysql_error(mysql));
     }
 

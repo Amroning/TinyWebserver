@@ -38,10 +38,10 @@ bool Log::init(const char* file_name, int close_log, int log_buf_size, int split
     //生成包含日期的日志文件名
     const char* p = strrchr(file_name, '/');
     char log_full_name[256] = { 0 };
-    if (p == NULL) {        //若没有目录路径，则直接由file_name生成日志文件名
+    if (p == NULL) {        //若没有目录路径，则直接由file_name生成日志文件名（时间+文件名）
         snprintf(log_full_name, 255, "%d_%02d_%02d_%s", my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday, file_name);
     }
-    else {                  //若有目录路径，则在之前加上路径
+    else {                  //若有目录路径，则在之前加上时间（路径+时间+文件名）
         strcpy(log_name, p + 1);
         strncpy(dir_name, file_name, p - file_name + 1);
         snprintf(log_full_name, 255, "%s%d_%02d_%02d_%s", dir_name, my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday, log_name);

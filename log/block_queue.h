@@ -73,7 +73,7 @@ public:
             return false;
         }
 
-        value = m_array[m_front];
+        value = m_array[(m_front + 1) % m_max_size];
 
         m_mutex.unlock();
 
@@ -142,7 +142,7 @@ public:
     bool pop(T& item) {
         m_mutex.lock();
 
-        while (m_max_size <= 0) {
+        while (m_size <= 0) {
             if (!m_cond.wait(m_mutex.get())) {
                 m_mutex.unlock();
                 return false;

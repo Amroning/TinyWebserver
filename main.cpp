@@ -2,9 +2,9 @@
 
 int main(int argc, char* argv[]) {
     //登录名、密码、库名
-    string user = "root";
-    string passwd = "root";
-    string databasename = "amrondb";
+    string user = "amron";
+    string passwd = "5910119";
+    string databasename = "yourdb";
 
     //命令行解析
     Config config;

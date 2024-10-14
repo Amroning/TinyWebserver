@@ -57,7 +57,7 @@ MYSQL* connection_pool::GetConnection() {
     lock.lock();
 
     con = connList.front();
-    connList.pop_back();
+    connList.pop_front();
     --m_FreeConn;
     ++m_CurConn;
 

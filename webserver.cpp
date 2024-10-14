@@ -28,7 +28,7 @@ WebServer::~WebServer() {
     delete m_pool;
 }
 
-//初始化相关变量
+//初始化相关变量    端口，数据库用户名、密码、数据库名，写日志方式，套接字SO_LINGER属性，监听、连接套接字触发模式，数据库最大连接数，线程数，是否使用日志标志位，反应堆模型
 void WebServer::init(int port, string user, string passWord, string databaseName,
     int log_write, int opt_linger, int trigmode, int sql_num, int thread_num, int close_log, int actor_model) {
     m_port = port;
@@ -84,7 +84,7 @@ void WebServer::log_write() {
 void WebServer::sql_pool() {
     //初始化数据库连接池
     m_connPool = connection_pool::GetInstance();
-    m_connPool->init("localhost", m_user, m_passWord, m_databaseName, 3306, m_sql_num, m_close_log);
+    m_connPool->init("127.0.0.1", m_user, m_passWord, m_databaseName, 3306, m_sql_num, m_close_log);
 
     //初始化数据库读取表
     users->initmysql_result(m_connPool);
