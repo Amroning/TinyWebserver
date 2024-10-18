@@ -22,7 +22,7 @@ void http_conn::initmysql_result(connection_pool* connPool) {
 
     //在user表中检索usermame，passwd数据，浏览器端输入
     if (mysql_query(mysql, "SELECT username,passwd FROM user")) {
-        LOG_ERROR("SELECT error:%S\n", mysql_error(mysql));
+        LOG_ERROR("SELECT error:%s\n", mysql_error(mysql));
     }
 
     //从表中检索完整的结果集
@@ -189,7 +189,7 @@ bool http_conn::read_once() {
     int bytes_read = 0;
 
     if (0 == m_TRIGMode) {
-        bytes_read = recv(m_sockfd, m_read_buf, READ_BUFFER_SIZE - m_read_idx, 0);
+        bytes_read = recv(m_sockfd, m_read_buf + m_read_idx, READ_BUFFER_SIZE - m_read_idx, 0);
         m_read_idx += bytes_read;
         if (bytes_read <= 0)
             return false;
@@ -197,7 +197,7 @@ bool http_conn::read_once() {
     }
     else {
         while (true) {
-            bytes_read = recv(m_sockfd, m_read_buf, READ_BUFFER_SIZE - m_read_idx, 0);
+            bytes_read = recv(m_sockfd, m_read_buf + m_read_idx, READ_BUFFER_SIZE - m_read_idx, 0);
             if (bytes_read == -1) {
                 if (errno == EAGAIN || errno == EWOULDBLOCK)        //没有数据可读，跳出循环
                     break;
